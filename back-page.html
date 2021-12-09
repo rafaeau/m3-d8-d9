@@ -35,7 +35,7 @@
             <div class="col-6">
                 <h1 class="my-3 text-center">Back-office</h1>
 
-                <div class="alert alert-success d-none" role="alert" id="alert-success"></div>
+                <div id="alert-success"></div>
 
                 <form onsubmit="submitForm(event)">
                     <div class="form-group">
@@ -90,8 +90,9 @@
                 if (response.ok) {
                     const serverResponse = await response.json()
                     const alert = document.querySelector("#alert-success")
-                    alert.classList.toggle("d-none")
+                    alert.className = "alert alert-success"
                     alert.innerHTML = `Product with an id: "${serverResponse._id}" added successfully!`
+                    document.querySelector("form").reset()
                 }
             } catch (err) {
                 alert (err),
