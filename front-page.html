@@ -67,7 +67,7 @@
                     item.classList.add("list-group-item", "d-flex", "align-items-center")
                     item.innerHTML = `<img src="${product.imageUrl}" height="60px" alt="product-photo">
                     <span class="ml-2">Name: ${product.name}<br>Brand: ${product.brand}<br>Description: ${product.description}</span>
-                    <span class="badge badge-dark ml-auto ml-2">$${product.price}</span>`
+                    <span class="badge badge-dark ml-auto mt-1">$${product.price}</span><a href="./detail-page.html?id=${product._id}"><span class="badge badge-info ml-3">Details</span></a>`
                     list.appendChild(item)
                 })
             })

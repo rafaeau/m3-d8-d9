@@ -33,7 +33,7 @@
         <div class="row justify-content-center">
 
             <div class="col-6">
-                <h1 class="my-3 text-center">Detail page</h1>
+                <h1 class="my-3 text-center title"></h1>
 
                 <ul class="list-group">
                     <!-- <li class="list-group-item">An item</li> -->
@@ -45,6 +45,40 @@
 
     <script>
 
+        const id = new URLSearchParams(location.search).get("id")
+        
+        const url = "https://striveschool-api.herokuapp.com/api/product/"
+
+        window.onload = () => {
+
+                fetch(url + id, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMjFmMTRiYjUzZDAwMTViMTllZDciLCJpYXQiOjE2Mzg5NzI0MTQsImV4cCI6MTY0MDE4MjAxNH0.oauW9EyjgVFdXEkIv_2CZMaftq-xHesD6DsOGURaFg0"
+                    }
+                })
+                .then(response => response.json())
+                .then(product => {
+                    const title = document.querySelector(".title")
+                    title.innerHTML = `${product.name} details:`
+                    const list = document.querySelector(".list-group")
+                    list.innerHTML = `<li class="list-group-item text-center"><img src="${product.imageUrl}" height="200px" alt="product-photo"></li>
+                    <li class="list-group-item">Name: ${product.name}</li>
+                    <li class="list-group-item">Description: ${product.description}</li>
+                    <li class="list-group-item">Brand: ${product.brand}</li>
+                    <li class="list-group-item">Price: ${product.price}</li>
+                    <li class="list-group-item">ID: ${product._id}</li>
+                    <li class="list-group-item">User ID: ${product.userId}</li>
+                    <li class="list-group-item">Created at: ${product.createdAt}</li>
+                    <li class="list-group-item">Updated at: ${product.updatedAt}</li>
+                    <span><button type="button" class="btn btn-warning mt-2 mb-5" onclick="editBtn()">Edit</button></span>`
+                })
+                .catch(err => console.error(err))
+        }
+
+        const editBtn = () => {
+            window.location.assign("./back-page.html?id=" + id)
+        }
 
 
     </script>
