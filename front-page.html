@@ -36,7 +36,12 @@
                 <h1 class="my-3 text-center">Front page</h1>
 
                 <ul class="list-group">
-                    <!-- <li class="list-group-item">An item</li> -->
+                  <div class="text-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only"></span>
+                    </div>
+                  </div>
+                  <!-- <li class="list-group-item">An item</li> -->
                 </ul>
                 
             </div>
@@ -62,6 +67,7 @@
             .then(products => {
                 products.forEach(product => {
                     const list = document.querySelector(".list-group")
+                    document.querySelector(".spinner-border").classList.add("d-none")
                     console.log(product)
                     const item = document.createElement("li")
                     item.classList.add("list-group-item", "d-flex", "align-items-center")
